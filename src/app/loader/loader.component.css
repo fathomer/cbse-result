@@ -1,0 +1,18 @@
+.dimmed {
+  position: relative;
+  z-index: 100000;
+  display: block;
+  position: absolute;
+  height: stretch;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+.center {
+  top: 40%;
+  left: 45%;
+  position: fixed;
+}
