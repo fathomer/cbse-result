@@ -13,13 +13,16 @@ import {MatListModule} from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatTableModule} from '@angular/material/table';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoaderComponent } from './loader/loader.component';
 import { HomeComponent } from './home/home.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CbseResultComponent } from './cbse-result/cbse-result.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     NavbarComponent,
     LoaderComponent,
     HomeComponent,
+    CbseResultComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +47,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     FormsModule,
     MatDialogModule,
     MatInputModule,
+    MatStepperModule,
+    ReactiveFormsModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
