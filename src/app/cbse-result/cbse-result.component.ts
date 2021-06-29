@@ -16,7 +16,23 @@ export interface Class12 {
   practicalTotalMarks: number;
 }
 
-const ELEMENT_DATA: Class10And11[] = [
+const defaultClass10: Class10And11[] = [
+  { marksObtained: 50, subject: 'Mathematics', totalMarks: 80 },
+  { marksObtained: 60, subject: 'Science', totalMarks: 80 },
+  { marksObtained: 70, subject: 'Social Studies', totalMarks: 80 },
+  { marksObtained: 80, subject: 'English', totalMarks: 80 },
+  { marksObtained: 90, subject: 'Hindi', totalMarks: 80 },
+];
+
+const defaultClass11: Class10And11[] = [
+  { marksObtained: 50, subject: 'Mathematics', totalMarks: 80 },
+  { marksObtained: 60, subject: 'Accounts', totalMarks: 80 },
+  { marksObtained: 70, subject: 'Business', totalMarks: 80 },
+  { marksObtained: 80, subject: 'English', totalMarks: 80 },
+  { marksObtained: 90, subject: 'Economics', totalMarks: 80 },
+];
+
+const defaultClass12: Class10And11[] = [
   { marksObtained: 50, subject: 'Mathematics', totalMarks: 80 },
   { marksObtained: 60, subject: 'Science', totalMarks: 80 },
   { marksObtained: 70, subject: 'Social Studies', totalMarks: 80 },
@@ -31,9 +47,9 @@ const ELEMENT_DATA: Class10And11[] = [
 })
 export class CbseResultComponent implements OnInit {
   displayedColumns: string[] = ['subject', 'marksObtained', 'totalMarks'];
-  dataSourceClass10 = [...ELEMENT_DATA];
-  dataSourceClass11 = [...ELEMENT_DATA];
-  dataSourceClass12 = [...ELEMENT_DATA];
+  dataSourceClass10 = [...defaultClass10];
+  dataSourceClass11 = [...defaultClass11];
+  dataSourceClass12 = [...defaultClass12];
   class10Data!: Class10And11;
   class11Data!: Class10And11;
   class12Data!: Class12;
@@ -65,19 +81,58 @@ export class CbseResultComponent implements OnInit {
     });
   }
 
+  compareClass10(first: Class10And11, second: Class10And11): number {
+    if (
+      first.marksObtained / first.totalMarks <
+      second.marksObtained / second.totalMarks
+    ) {
+      return 1;
+    }
+    if (
+      first.marksObtained / first.totalMarks >
+      second.marksObtained / second.totalMarks
+    ) {
+      return -1;
+    } else return 0;
+  }
+
+  logIt(): any {
+    console.log(this.getClass10Top3());
+  }
+
+  getClass10Top3(): number {
+    if (this.dataSourceClass10 && this.dataSourceClass10.length >= 3) {
+      let class10DataCopy = JSON.parse(JSON.stringify(this.dataSourceClass10));
+      return (
+        class10DataCopy
+          .sort(this.compareClass10)
+          .slice(0, 3)
+          .map(
+            (element: Class10And11) =>
+              (100 * element.marksObtained) / element.totalMarks
+          )
+          .reduce((a: number, b: number) => a + b) * 0.3
+      );
+    }
+    return -1;
+  }
+
   addData(classNumber: number) {
-    const randomElementIndex = Math.floor(Math.random() * ELEMENT_DATA.length);
+    let randomElementIndex: any;
     switch (classNumber) {
       case 10:
-        this.dataSourceClass10.push(ELEMENT_DATA[randomElementIndex]);
+        randomElementIndex = Math.floor(Math.random() * defaultClass10.length);
+        this.dataSourceClass10.push(defaultClass10[randomElementIndex]);
         this.table10.renderRows();
         break;
       case 11:
-        this.dataSourceClass11.push(ELEMENT_DATA[randomElementIndex]);
+        randomElementIndex = Math.floor(Math.random() * defaultClass11.length);
+        this.dataSourceClass11.push(defaultClass11[randomElementIndex]);
         this.table11.renderRows();
         break;
       case 12:
-        this.dataSourceClass12.push(ELEMENT_DATA[randomElementIndex]);
+        randomElementIndex = Math.floor(Math.random() * defaultClass12.length);
+        this.dataSourceClass12.push(defaultClass12[randomElementIndex]);
         this.table12.renderRows();
         break;
     }
