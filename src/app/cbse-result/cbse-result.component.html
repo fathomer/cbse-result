@@ -1,177 +1,248 @@
-<mat-stepper orientation="horizontal" [linear]="isLinear" #stepper>
-  <mat-step [stepControl]="class10FormGroup">
-    <ng-template matStepLabel>Class X Marks</ng-template>
-    <div class="demo-button-container">
-      <!-- <button mat-raised-button (click)="addData(10)" class="demo-button">
-        Add new row
-      </button> -->
-      <button mat-raised-button (click)="logIt()" class="demo-button">
-        Log max
-      </button>
-      <!-- <button mat-raised-button [disabled]="!dataSourceClass10.length" (click)="removeData(10)" class="demo-button">
-        Remove last row
-      </button> -->
-    </div>
+<button mat-raised-button (click)="getResult()" class="demo-button my-2">
+  Calculate Result
+</button>
 
-    <table #table10 mat-table [dataSource]="dataSourceClass10" class="mat-elevation-z8 demo-table">
-      <!-- Position Column -->
-      <ng-container matColumnDef="subject">
-        <th mat-header-cell *matHeaderCellDef style="padding-right: 5.2em">
-          Subjects
-        </th>
-        <td mat-cell *matCellDef="let element">
-          <mat-form-field class="example-full-width" floatLabel="never" [style.width.px]="100">
-            <input matInput #message maxlength="256" placeholder="Enter Subject" [(ngModel)]="element.subject" />
-          </mat-form-field>
-        </td>
-      </ng-container>
+<div class="container-fluid">
+  <div class="row">
+  <div class="col-md-3 col-sm-8 my-2">
+    <strong>Class X - Enter only theory Marks(Main Subjects)</strong>
+    <table
+    #table11
+    mat-table
+    [dataSource]="dataSourceClass10"
+    class="mat-elevation-z8 demo-table"
+  >
+    <!-- Position Column -->
+    <ng-container matColumnDef="subject">
+      <th mat-header-cell *matHeaderCellDef style="padding-right: 5.2em">
+        Subjects
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-form-field
+          class="example-full-width"
+          floatLabel="never"
+          [style.width.px]="100"
+        >
+          <input
+            matInput
+            #message
+            maxlength="256"
+            [(ngModel)]="element.subject"
+          />
+        </mat-form-field>
+      </td>
+    </ng-container>
 
-      <!-- Name Column -->
-      <ng-container matColumnDef="marksObtained">
-        <th mat-header-cell *matHeaderCellDef style="padding-right: 2em">
-          Marks Obtained
-        </th>
-        <!-- {{element.marksObtained}} -->
-        <td mat-cell *matCellDef="let element">
-          <mat-form-field class="example-full-width" floatLabel="never" [style.width.px]="45">
-            <input matInput type="number" placeholder="Enter Marks Obtained" [(ngModel)]="element.marksObtained" />
-          </mat-form-field>
-        </td>
-      </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="marksObtained">
+      <th mat-header-cell *matHeaderCellDef style="padding-right: 2em">
+        Marks Obtained
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-form-field
+          class="example-full-width"
+          floatLabel="never"
+          [style.width.px]="45"
+        >
+          <input
+            matInput
+            type="number"
+            [(ngModel)]="element.marksObtained"
+          />
+        </mat-form-field>
+      </td>
+    </ng-container>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="totalMarks">
+      <th mat-header-cell *matHeaderCellDef>Maximum Marks</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-form-field
+          class="example-full-width"
+          floatLabel="never"
+          [style.width.px]="45"
+        >
+          <input
+            matInput
+            type="number"
+            [(ngModel)]="element.totalMarks"
+          />
+        </mat-form-field>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
 
-      <!-- Weight Column -->
-      <ng-container matColumnDef="totalMarks">
-        <th mat-header-cell *matHeaderCellDef>Maximum Marks</th>
-        <td mat-cell *matCellDef="let element">
-          <mat-form-field class="example-full-width" floatLabel="never" [style.width.px]="45">
-            <input matInput type="number" placeholder="Enter Maximum Possible Marks> "
-              [(ngModel)]="element.totalMarks" />
-          </mat-form-field>
-        </td>
-      </ng-container>
+<div class="col-md-3 col-sm-8 my-2">
+  <strong>Class XI - Enter only theory Marks(Main Subjects)</strong>
+  <table
+    #table11
+    mat-table
+    [dataSource]="dataSourceClass11"
+    class="mat-elevation-z8 demo-table"
+  >
+    <!-- Position Column -->
+    <ng-container matColumnDef="subject">
+      <th mat-header-cell *matHeaderCellDef style="padding-right: 5.2em">
+        Subjects
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-form-field
+          class="example-full-width"
+          floatLabel="never"
+          [style.width.px]="100"
+        >
+          <input
+            matInput
+            #message
+            maxlength="256"
+            [(ngModel)]="element.subject"
+          />
+        </mat-form-field>
+      </td>
+    </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
-    <div>
-      <button mat-button matStepperNext>Next</button>
-    </div>
-  </mat-step>
-  <mat-step [stepControl]="class11FormGroup">
-    <ng-template matStepLabel>Class XI Marks</ng-template>
-    <div class="demo-button-container">
-      <button mat-raised-button (click)="addData(11)" class="demo-button">
-        Add data
-      </button>
-      <button mat-raised-button [disabled]="!dataSourceClass11.length" (click)="removeData(11)" class="demo-button">
-        Remove data
-      </button>
-    </div>
+    <!-- Name Column -->
+    <ng-container matColumnDef="marksObtained">
+      <th mat-header-cell *matHeaderCellDef style="padding-right: 2em">
+        Marks Obtained
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-form-field
+          class="example-full-width"
+          floatLabel="never"
+          [style.width.px]="45"
+        >
+          <input
+            matInput
+            type="number"
+            [(ngModel)]="element.marksObtained"
+          />
+        </mat-form-field>
+      </td>
+    </ng-container>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="totalMarks">
+      <th mat-header-cell *matHeaderCellDef>Maximum Marks</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-form-field
+          class="example-full-width"
+          floatLabel="never"
+          [style.width.px]="45"
+        >
+          <input
+            matInput
+            type="number"
+            [(ngModel)]="element.totalMarks"
+          />
+        </mat-form-field>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
+<div class="col-md-5 col-sm-12 my-2">
+  <strong>Class XII</strong>
+  <table
+#table12
+mat-table
+[dataSource]="getdataSourceClass12()"
+class="mat-elevation-z8 demo-table"
+>
+<!-- Position Column -->
+<ng-container matColumnDef="subject">
+  <th mat-header-cell *matHeaderCellDef style="padding-right: 10px">
+    Subjects
+  </th>
+  <td mat-cell *matCellDef="let element">
+    {{ element.subject }}
+  </td>
+</ng-container>
 
-    <table #table11 mat-table [dataSource]="dataSourceClass11" class="mat-elevation-z8 demo-table">
-      <!-- Position Column -->
-      <ng-container matColumnDef="subject">
-        <th mat-header-cell *matHeaderCellDef style="padding-right: 5.2em">
-          Subjects
-        </th>
-        <td mat-cell *matCellDef="let element">
-          <mat-form-field class="example-full-width" floatLabel="never" [style.width.px]="100">
-            <input matInput #message maxlength="256" placeholder="Enter Subject" [(ngModel)]="element.subject" />
-          </mat-form-field>
-        </td>
-      </ng-container>
+<!-- Name Column -->
+<ng-container matColumnDef="theoryMarksObtained">
+  <th mat-header-cell *matHeaderCellDef>
+    Thoery Marks Obtained
+  </th>
+  <!-- {{element.marksObtained}} -->
+  <td mat-cell *matCellDef="let element">
+    <mat-form-field
+      class="example-full-width"
+      floatLabel="never"
+      [style.width.px]="45"
+    >
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="element.theoryMarksObtained"
+      />
+    </mat-form-field>
+  </td>
+</ng-container>
 
-      <!-- Name Column -->
-      <ng-container matColumnDef="marksObtained">
-        <th mat-header-cell *matHeaderCellDef style="padding-right: 2em">
-          Marks Obtained
-        </th>
-        <td mat-cell *matCellDef="let element">
-          <mat-form-field class="example-full-width" floatLabel="never" [style.width.px]="45">
-            <input matInput type="number" placeholder="Enter Marks Obtained" [(ngModel)]="element.marksObtained" />
-          </mat-form-field>
-        </td>
-      </ng-container>
-      <!-- Weight Column -->
-      <ng-container matColumnDef="totalMarks">
-        <th mat-header-cell *matHeaderCellDef>Maximum Marks</th>
-        <td mat-cell *matCellDef="let element">
-          <mat-form-field class="example-full-width" floatLabel="never" [style.width.px]="45">
-            <input matInput type="number" placeholder="Enter Maximum Possible Marks> "
-              [(ngModel)]="element.totalMarks" />
-          </mat-form-field>
-        </td>
-      </ng-container>
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
-    </div>
-  </mat-step>
-  <mat-step [stepControl]="class12FormGroup">
-    <ng-template matStepLabel>Class XII Marks</ng-template>
-    <div class="demo-button-container">
-      <button mat-raised-button (click)="addData(12)" class="demo-button">
-        Add data
-      </button>
-      <button mat-raised-button [disabled]="!dataSourceClass12.length" (click)="removeData(12)" class="demo-button">
-        Remove data
-      </button>
-    </div>
+<!-- Weight Column -->
+<ng-container matColumnDef="theoryTotalMarks">
+  <th mat-header-cell *matHeaderCellDef>Maximum Marks</th>
+  <td mat-cell *matCellDef="let element">
+    <mat-form-field
+      class="example-full-width"
+      floatLabel="never"
+      [style.width.px]="45"
+    >
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="element.theoryTotalMarks"
+      />
+    </mat-form-field>
+  </td>
+</ng-container>
 
-    <table #table12 mat-table [dataSource]="dataSourceClass12" class="mat-elevation-z8 demo-table">
-      <!-- Position Column -->
-      <ng-container matColumnDef="subject">
-        <th mat-header-cell *matHeaderCellDef style="padding-right: 5.2em">
-          Subjects
-        </th>
-        <td mat-cell *matCellDef="let element">
-          <mat-form-field class="example-full-width" floatLabel="never" [style.width.px]="100">
-            <input matInput #message maxlength="256" placeholder="Enter Subject" [(ngModel)]="element.subject" />
-          </mat-form-field>
-        </td>
-      </ng-container>
+<!-- Weight Column -->
+<ng-container matColumnDef="practicalMarksObtained">
+  <th mat-header-cell *matHeaderCellDef>Practical Marks</th>
+  <td mat-cell *matCellDef="let element">
+    <mat-form-field
+      class="example-full-width"
+      floatLabel="never"
+      [style.width.px]="45"
+    >
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="element.practicalMarksObtained"
+      />
+    </mat-form-field>
+  </td>
+</ng-container>
 
-      <!-- Name Column -->
-      <ng-container matColumnDef="marksObtained">
-        <th mat-header-cell *matHeaderCellDef style="padding-right: 2em">
-          Marks Obtained
-        </th>
-        <!-- {{element.marksObtained}} -->
-        <td mat-cell *matCellDef="let element">
-          <mat-form-field class="example-full-width" floatLabel="never" [style.width.px]="45">
-            <input matInput type="number" placeholder="Enter Marks Obtained" [(ngModel)]="element.marksObtained" />
-          </mat-form-field>
-        </td>
-      </ng-container>
+<!-- Weight Column -->
+<ng-container matColumnDef="practicalTotalMarks">
+  <th mat-header-cell *matHeaderCellDef>Maximum Practical Marks</th>
+  <td mat-cell *matCellDef="let element">
+    <mat-form-field
+      class="example-full-width"
+      floatLabel="never"
+      [style.width.px]="45"
+    >
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="element.practicalTotalMarks"
+      />
+    </mat-form-field>
+  </td>
+</ng-container>
 
-      <!-- Weight Column -->
-      <ng-container matColumnDef="totalMarks">
-        <th mat-header-cell *matHeaderCellDef>Maximum Marks</th>
-        <td mat-cell *matCellDef="let element">
-          <mat-form-field class="example-full-width" floatLabel="never" [style.width.px]="45">
-            <input matInput type="number" placeholder="Enter Maximum Possible Marks> "
-              [(ngModel)]="element.totalMarks" />
-          </mat-form-field>
-        </td>
-      </ng-container>
+<tr mat-header-row *matHeaderRowDef="displayedColumns12"></tr>
+<tr mat-row *matRowDef="let row; columns: displayedColumns12"></tr>
+</table>
+  </div>
+</div>
+</div>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
-    </div>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
-  </mat-step>
-</mat-stepper>
+
+
+

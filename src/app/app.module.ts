@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -50,6 +50,7 @@ import { CbseResultComponent } from './cbse-result/cbse-result.component';
     MatStepperModule,
     ReactiveFormsModule,
     MatTableModule,
+    SweetAlert2Module,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -6,12 +6,12 @@ import { HomeComponent } from './home/home.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'cbse-result',
     pathMatch: 'full',
   },
   {
     path: "home",
-    component: HomeComponent
+    redirectTo: 'cbse-result',
   },
   {
     path: "cbse-result",
